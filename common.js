@@ -15,7 +15,7 @@
   function $$(s, c) { return Array.from((c || document).querySelectorAll(s)); }
 
   /* ---------- WISHLIST (Server-backed, no localStorage) ---------- */
-  const WL_API = "http://localhost:3000/wishlist";
+  const WL_API = "http://elite-haven.onrender.com/wishlist";
 
   const Wishlist = {
     _cache: new Set(), // unique property IDs
@@ -91,7 +91,7 @@
     return String(property.id || "") === normalizedId || String(property.propertyId || property.id || "") === normalizedId;
   };
 
-  window.EH.INQUIRY_API_URL = "http://localhost:3000/inquiries";
+  window.EH.INQUIRY_API_URL = "http://elite-haven.onrender.com/inquiries";
   window.EH.loadInquiries = async function () {
     if (window.EH._inquiryCache) return window.EH._inquiryCache;
     try {
@@ -258,7 +258,7 @@
   window.EH.loadAllProperties = async function () {
     if (window.EH._allCache) return window.EH._allCache;
 
-    const url = "http://localhost:3000/properties";
+    const url = "http://elite-haven.onrender.com/properties";
 
     try {
       const res = await fetch(url, { cache: "no-store" });
@@ -297,7 +297,7 @@
   window.EH.invalidateProperties = function () { window.EH._cache = null; window.EH._allCache = null; };
 
   window.EH.updateProperty = async function (id, patch) {
-    const url = `http://localhost:3000/properties/${encodeURIComponent(id)}`;
+    const url = `http://elite-haven.onrender.com/properties/${encodeURIComponent(id)}`;
     const res = await fetch(url, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -309,7 +309,7 @@
   };
 
   window.EH.deleteProperty = async function (id) {
-    const url = `http://localhost:3000/properties/${encodeURIComponent(id)}`;
+    const url = `http://elite-haven.onrender.com/properties/${encodeURIComponent(id)}`;
     const res = await fetch(url, { method: 'DELETE' });
     if (!res.ok) throw new Error(`Unable to delete property ${id}: ${res.status}`);
     window.EH.invalidateProperties();
