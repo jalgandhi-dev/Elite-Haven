@@ -184,7 +184,7 @@ async function publishProperty() {
       property.reviewNotes = editingProperty.reviewNotes;
     }
 
-    const saveRes = await fetch(editingProperty ? `https://elite-haven.onrender.com/properties${encodeURIComponent(editingProperty.id)}` : "http://elite-haven.onrender.com/properties", {
+    const saveRes = await fetch(editingProperty ? `https://elite-haven.onrender.com/properties${encodeURIComponent(editingProperty.id)}` : "https://elite-haven.onrender.com/properties", {
       method: editingProperty ? 'PATCH' : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(property)
@@ -201,7 +201,7 @@ async function publishProperty() {
     const created = await saveRes.json();
     if (!editingProperty && created && created.id) {
       try {
-        await fetch(`http://elite-haven.onrender.com/properties/${created.id}`, {
+        await fetch(`https://elite-haven.onrender.com/properties/${created.id}`, {
           method: 'PATCH', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ propertyId: created.id })
         });
