@@ -211,10 +211,10 @@
 
       // --- Dynamic stats ---
       try {
-        const inquiries = await (window.EH.loadInquiries ? window.EH.loadInquiries() : fetch('http://elite-haven.onrender.com/inquiries').then(r=>r.ok? r.json():[]));
+        const inquiries = await (window.EH.loadInquiries ? window.EH.loadInquiries() : fetch('https://elite-haven.onrender.com/inquiries').then(r=>r.ok? r.json():[]));
         let users = [];
         try {
-          const ures = await fetch('http://elite-haven.onrender.com/users');
+          const ures = await fetch('https://elite-haven.onrender.com/users');
           users = ures.ok ? await ures.json() : [];
         } catch (e) { users = []; }
 
