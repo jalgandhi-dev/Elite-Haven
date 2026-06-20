@@ -278,7 +278,7 @@
         document.getElementById("advisorPassword").value.trim();
 
       const usersResponse =
-        await fetch("http://localhost:3000/users");
+        await fetch("http://elite-haven.onrender.com/users");
 
       const users =
         await usersResponse.json();
@@ -294,7 +294,7 @@
         return;
       }
 
-      await fetch("http://localhost:3000/users", {
+      await fetch("http://elite-haven.onrender.com/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -369,7 +369,7 @@
       if (!id) return;
       
       if (btn.classList.contains('verify-approve')) {
-        await fetch(`http://localhost:3000/properties/${encodeURIComponent(id)}`, {
+        await fetch(`http://elite-haven.onrender.com/properties/${encodeURIComponent(id)}`, {
           method: 'PATCH', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ verified: true, reviewStatus: 'approved', reviewedAt: new Date().toISOString() })
         });
@@ -380,7 +380,7 @@
         const ok = confirm('Reject and DELETE this property? This action is permanent.');
         if (!ok) return;
         try {
-          const res = await fetch(`http://localhost:3000/properties/${encodeURIComponent(id)}`, { method: 'DELETE' });
+          const res = await fetch(`http://elite-haven.onrender.com/properties/${encodeURIComponent(id)}`, { method: 'DELETE' });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           window.EH.invalidateProperties();
           window.EH.toast('Property deleted');
@@ -394,10 +394,10 @@
         const msg = prompt('Enter change request for the agent:');
         if (msg === null) return;
         try {
-          const res = await fetch(`http://localhost:3000/properties/${encodeURIComponent(id)}`);
+          const res = await fetch(`http://elite-haven.onrender.com/properties/${encodeURIComponent(id)}`);
           const prop = res.ok ? await res.json() : null;
           const notes = Array.isArray(prop?.reviewNotes) ? prop.reviewNotes.concat([{ message: msg, date: new Date().toISOString() }]) : [{ message: msg, date: new Date().toISOString() }];
-          await fetch(`http://localhost:3000/properties/${encodeURIComponent(id)}`, {
+          await fetch(`http://elite-haven.onrender.com/properties/${encodeURIComponent(id)}`, {
             method: 'PATCH', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ verified: false, reviewStatus: 'changes_requested', reviewNotes: notes, reviewedAt: new Date().toISOString() })
           });
@@ -411,7 +411,7 @@
 
   // Load Users
   const usersResponse =
-    await fetch("http://localhost:3000/users");
+    await fetch("http://elite-haven.onrender.com/users");
 
   const users =
     await usersResponse.json();
@@ -485,7 +485,7 @@
       if (!user) return;
       const active = user.active !== false;
       try {
-        await fetch(`http://localhost:3000/users/${encodeURIComponent(id)}`, {
+        await fetch(`http://elite-haven.onrender.com/users/${encodeURIComponent(id)}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ active: !active })
@@ -510,7 +510,7 @@
         if (!agent) return;
         const active = agent.active !== false;
         try {
-          await fetch(`http://localhost:3000/users/${encodeURIComponent(id)}`, {
+          await fetch(`http://elite-haven.onrender.com/users/${encodeURIComponent(id)}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ active: !active })
@@ -526,7 +526,7 @@
         const confirmed = confirm('Delete this agent account? This cannot be undone.');
         if (!confirmed) return;
         try {
-          await fetch(`http://localhost:3000/users/${encodeURIComponent(id)}`, { method: 'DELETE' });
+          await fetch(`http://elite-haven.onrender.com/users/${encodeURIComponent(id)}`, { method: 'DELETE' });
           window.EH.toast('Agent removed successfully');
           location.reload();
         } catch (err) {
@@ -541,8 +541,8 @@
 
   // Load inquiries and compute lead conversion
   try {
-    const inquiries = await (window.EH.loadInquiries ? window.EH.loadInquiries() : fetch('http://localhost:3000/inquiries').then(r=>r.ok? r.json():[]));
-    const wishRes = await fetch('http://localhost:3000/wishlist');
+    const inquiries = await (window.EH.loadInquiries ? window.EH.loadInquiries() : fetch('http://elite-haven.onrender.com/inquiries').then(r=>r.ok? r.json():[]));
+    const wishRes = await fetch('http://elite-haven.onrender.com/wishlist');
     const wishlist = wishRes.ok ? await wishRes.json() : [];
 
     // Use last-30-days window for performance metrics
