@@ -110,7 +110,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
 
   try {
     // Get all existing users
-    const usersResponse = await fetch("http://localhost:3000/users");
+    const usersResponse = await fetch("http://elite-haven.onrender.com/users");
     const users = await usersResponse.json();
 
     // Check if email already exists
@@ -136,7 +136,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     };
 
     // Save user
-    const response = await fetch("http://localhost:3000/users", {
+    const response = await fetch("http://elite-haven.onrender.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
