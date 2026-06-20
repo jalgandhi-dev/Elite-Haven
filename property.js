@@ -1,6 +1,6 @@
 /* Property inquiry helpers and detail renderer */
 window.EH = window.EH || {};
-window.EH.INQUIRY_API_URL = "http://localhost:3000/inquiries"; // Unified JSON Server inquiries endpoint
+window.EH.INQUIRY_API_URL = "http://elite-haven.onrender.com/inquiries"; // Unified JSON Server inquiries endpoint
 window.EH.generateId = function (prefix = "inq") {
   if (window.crypto?.randomUUID) return `${prefix}_${window.crypto.randomUUID()}`;
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
