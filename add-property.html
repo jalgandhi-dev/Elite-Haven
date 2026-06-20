@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Add Property — Elite Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel='stylesheet' href='style.css' />
+</head>
+<body data-page="add-property">
+  <div id="mountNav"></div>
+
+  <div class="dash-shell">
+    <aside class="dash-side">
+      <div class="userblock">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=60" alt="Agent avatar"/>
+        <div class="field">
+          <div class="name" id="agentName"></div>
+          <div class="role">Senior Advisor</div>
+        </div>
+      </div>
+      <nav>
+        <a href="dashboard-agent.html">Overview</a>
+        <a href="listings.html">My Listings</a>
+        <a href="#" class="active">Add Property</a>
+        <a href="#inquiries">Inquiries</a>
+        <a href="#bookings">Site Visits</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#" id="sidebarLogout" data-testid="agent-tab-logout">Logout</a>
+      </nav>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-head">
+        <div>
+          <span class="eyebrow">Agent Dashboard</span>
+          <h2>Add New Property</h2>
+          <div class="muted-small">Create a premium listing with rich media and elegant presentation.</div>
+        </div>
+        <div class="section-head actions">
+          <button class="btn" id="previewBtn">Preview</button>
+          <button class="btn btn--ghost" id="saveDraft">Save Draft</button>
+          <button class="btn btn--solid" id="publishBtn">Publish Property</button>
+        </div>
+      </div>
+
+      <form id="addPropertyForm" class="reveal">
+        <div class="glass section-gap">
+          <h3 class="reveal">Basic Property Information</h3>
+          <div class="form-grid three-col">
+            <div class="field">
+              <label>Property Title</label>
+              <input class="gold-input" name="title" placeholder="e.g. Onyx Crown Villa" required>
+            </div>
+
+            <div class="field">
+              <label>Property Type</label>
+              <select class="gold-input" name="type">
+                <option>Villa</option>
+                <option>Penthouse</option>
+                <option>Estate</option>
+                <option>Apartment</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Price</label>
+              <input type="number" class="gold-input" name="price" placeholder="USD" required>
+            </div>
+            <div class="field">
+              <label>Location (City)</label>
+              <input class="gold-input" name="city" placeholder="Beverly Hills">
+            </div>
+            <div class="field">
+              <label>Address</label>
+              <input class="gold-input" name="address" placeholder="Street, Area, ZIP">
+            </div>
+            <div class="field full">
+              <label>Property Description</label>
+              <textarea class="gold-input" name="description" placeholder="A short, luxurious description..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass section-gap">
+          <h3>Property Details</h3>
+          <div class="form-row">
+            <div class="field">
+              <label>Bedrooms</label>
+              <input class="gold-input" name="beds" type="number" min="0">
+            </div>
+            <div class="field">
+              <label>Bathrooms</label>
+              <input class="gold-input" name="baths" type="number" min="0">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Area Size (sqft)</label>
+              <input class="gold-input" name="area" type="number">
+            </div>
+            <div class="field">
+              <label>Parking</label>
+              <select class="gold-input" name="parking">
+                <option>Garage</option>
+                <option>Street</option>
+                <option>Basement</option>
+                <option>None</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Furnishing Status</label>
+              <select class="gold-input" name="furnish">
+                <option>Furnished</option>
+                <option>Part Furnished</option>
+                <option>Unfurnished</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Property Status</label>
+              <select class="gold-input" name="status">
+                <option>For Sale</option>
+                <option>For Rent</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass section-gap">
+          <h3>Amenities</h3>
+          <div class="tag-row">
+            <label class="tag">
+              <input type="checkbox" name="amenities" value="Swimming Pool"> Swimming Pool
+            </label>
+            <label class="tag">
+              <input type="checkbox" name="amenities" value="Gym"> Gym
+            </label>
+            <label class="tag">
+              <input type="checkbox" name="amenities" value="Security"> Security
+            </label>
+            <label class="tag">
+              <input type="checkbox" name="amenities" value="Garden"> Garden
+            </label>
+            <label class="tag">
+              <input type="checkbox" name="amenities" value="Smart Home"> Smart Home
+            </label>
+            <label class="tag">
+              <input type="checkbox" name="amenities" value="Club House"> Club House
+            </label>
+          </div>
+        </div>
+
+        <div class="glass section-gap">
+          <h3>Media Upload</h3>
+          <div class="media-upload">
+            <div class="media-upload__cover">
+              <label>Cover Image URL (Required)</label>
+              <input class="gold-input" type="url" name="coverImage" placeholder="https://example.com/cover.jpg" required />
+            </div>
+
+            <div class="media-upload__gallery">
+              <label>Gallery Image URLs (Up to 5)</label>
+              <div class="gallery-inputs">
+                <input class="gold-input" type="url" name="images" placeholder="https://example.com/img1.jpg" />
+                <input class="gold-input" type="url" name="images" placeholder="https://example.com/img2.jpg" />
+                <input class="gold-input" type="url" name="images" placeholder="https://example.com/img3.jpg" />
+                <input class="gold-input" type="url" name="images" placeholder="https://example.com/img4.jpg" />
+                <input class="gold-input" type="url" name="images" placeholder="https://example.com/img5.jpg" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass section-gap">
+          <h3>Location</h3>
+          <div class="form-grid two-col">
+            <div class="field">
+              <label>Google Maps Embed / Link</label>
+              <input class="gold-input" name="maplink" placeholder="Paste embed iframe or google maps link">
+            </div>
+            <div class="field">
+              <label>Nearby Places (comma separated)</label>
+              <input class="gold-input" name="nearby">
+            </div>
+          </div>
+          <div><iframe id="mapPreview" class="map-frame" src="" loading="lazy" title="Map preview"></iframe></div>
+        </div>
+
+        <div class="glass section-gap">
+          <h3>Agent Information</h3>
+          <div class="form-row">
+            <div class="field">
+              <label>Agent Name</label>
+              <input class="gold-input" name="agentName" placeholder="Advisor Name">
+            </div>
+            <div class="field">
+              <label>Contact Number</label>
+              <input class="gold-input" name="agentPhone" placeholder="+1 310 555 0100">
+            </div>
+          </div>
+          <div class="field">
+            <label>Email</label><br>
+            <input class="gold-input" name="agentEmail" placeholder="concierge@elitehaven.lux">
+          </div>
+        </div>
+
+        <div class="section-actions">
+          <button type="button" class="btn btn--ghost" id="saveDraft2">Save Draft</button>
+          <button type="button" class="btn btn--solid" id="publishBtn2">Publish Property</button>
+        </div>
+      </form>
+
+    </main>
+  </div>
+
+  <div id="mountFooter"></div>
+
+  <script src="common.js"></script>
+  <script src="add-property.js"></script>
+</body>
+</html>
+
+
+

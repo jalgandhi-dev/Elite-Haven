@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elite Haven — Rare Residences for Discerning Owners</title>
+  <meta name="description" content="An invitation-only platform connecting the world's most discerning buyers with rare residential masterpieces." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel='stylesheet' href='style.css' />
+</head>
+<body data-page="home" data-testid="page-home">
+  <div id="mountNav"></div>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero" data-testid="hero-section">
+    <div class="hero__bg"></div>
+    <div class="container hero__content">
+      <span class="eyebrow reveal" data-testid="hero-eyebrow">Est. 2014 · Five Continents</span>
+      <h1 class="reveal reveal-delay-1">
+        Residences that refuse<br/>to be <span class="accent">ordinary</span>.
+      </h1>
+      <p class="lead reveal reveal-delay-2">
+        A curated collection of architectural masterpieces, private estates and skyline penthouses — discovered, vetted, and privately introduced.
+      </p>
+
+      <div class="hero__actions reveal reveal-delay-3">
+        <a href="listings.html" class="btn btn--solid btn--lg" data-testid="hero-explore-btn">Explore Collection <span class="arrow">&rarr;</span></a>
+        <a href="contact.html" class="btn btn--outline btn--lg" data-testid="hero-private-btn">Private Introduction</a>
+      </div>
+
+      <div class="hero__meta reveal reveal-delay-3">
+        <div class="stat"><span class="num">$4.2B</span><span class="label">Closed Volume</span></div>
+        <div class="stat"><span class="num">340+</span><span class="label">Residences</span></div>
+        <div class="stat"><span class="num">42</span><span class="label">Countries</span></div>
+      </div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ============== FEATURED PROPERTIES ============== -->
+  <section class="section" data-testid="featured-section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">The Collection</span>
+          <h2>Featured residences,<br/>quietly remarkable.</h2>
+        </div>
+        <p class="subtitle">A rotating selection from our private inventory — each property personally inspected by a senior advisor.</p>
+      </div>
+      <div class="cards-grid" id="featuredGrid" data-testid="featured-grid"></div>
+      <div class="text-center" style="margin-top:56px">
+        <a href="listings.html" class="btn btn--ghost btn--lg" data-testid="view-all-btn">View All Properties <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SERVICES ============== -->
+  <section class="section section--tight" data-testid="services-section" style="background:var(--bg-1);border-block:1px solid var(--line)">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Our Services</span>
+          <h2>Beyond brokerage.<br/>A complete private office.</h2>
+        </div>
+        <p class="subtitle">From acquisition to architectural commission, we operate as an extension of your household.</p>
+      </div>
+      <div class="feature-grid reveal">
+        <div class="feature">
+          <svg class="feature__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 12L12 3l9 9M5 10v10h14V10"/></svg>
+          <h4>Private Acquisitions</h4>
+          <p>Off-market sourcing through a vetted network of estates, developers and private trusts.</p>
+        </div>
+        <div class="feature">
+          <svg class="feature__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          <h4>International Relocation</h4>
+          <p>Visas, schooling, household staff and concierge introductions in 42 jurisdictions.</p>
+        </div>
+        <div class="feature">
+          <svg class="feature__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2v20M2 12h20"/></svg>
+          <h4>Architectural consultation</h4>
+          <p>Bespoke design, restoration and project management with award-winning studios.</p>
+        </div>
+        <div class="feature">
+          <svg class="feature__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+          <h4>Asset management</h4>
+          <p>Ongoing portfolio reporting, capital improvements and discreet resale strategy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SPLIT — ABOUT TEASER ============== -->
+  <section class="section" data-testid="about-teaser">
+    <div class="container">
+      <div class="split">
+        <div class="split__media reveal">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1400&q=85" alt="Interior craftsmanship"/>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <span class="eyebrow">A House of Provenance</span>
+          <h2>Twelve years of<br/>quiet, exact taste.</h2>
+          <p>Founded in 2014 by a small partnership of former private bankers and architects, Elite Haven was designed to be the antithesis of the property portal — relationships over algorithms, judgment over volume.</p>
+          <p>Today our advisors operate from seven cities, our clients close over <strong style="color:var(--gold)">$420M</strong> annually, and we still answer every call personally.</p>
+          <a href="about.html" class="btn" style="margin-top:16px" data-testid="about-cta">Our Story <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== STATS BAND ============== -->
+  <section class="stats-band reveal" data-testid="stats-band">
+    <div class="stat-item"><span class="num">$4.2B</span><span class="label">Total Volume</span></div>
+    <div class="stat-item"><span class="num">340+</span><span class="label">Residences Placed</span></div>
+    <div class="stat-item"><span class="num">42</span><span class="label">Countries Served</span></div>
+    <div class="stat-item"><span class="num">98%</span><span class="label">Client Retention</span></div>
+  </section>
+
+  <!-- ============== INVESTMENT OPPORTUNITIES ============== -->
+  <section class="section" data-testid="opportunities-section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Investment Opportunities</span>
+          <h2>Capital meets craftsmanship.</h2>
+        </div>
+        <p class="subtitle">Limited-allocation projects with senior debt covered. For accredited investors only.</p>
+      </div>
+      <div class="cards-grid" id="invGrid" data-testid="opportunities-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============== TESTIMONIALS ============== -->
+  <section class="section" data-testid="testimonials-section" style="background:var(--bg-1);border-block:1px solid var(--line)">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Voices</span>
+          <h2>What our principals say.</h2>
+        </div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial reveal">
+          <div class="stars">★★★★★</div>
+          <p>Elite Haven understood my brief in two sentences. The villa they sourced wasn't on a single portal — and it has become our family's most treasured home.</p>
+          <div class="person">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt="Anya P."/>
+            <div><div class="name">Anya P.</div><div class="role">Family Office, Geneva</div></div>
+          </div>
+        </div>
+        <div class="testimonial reveal reveal-delay-1">
+          <div class="stars">★★★★★</div>
+          <p>Discretion, taste, and a network you cannot buy. I have introduced four friends; each has closed a transaction within the year.</p>
+          <div class="person">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="Rohan M."/>
+            <div><div class="name">Rohan M.</div><div class="role">Founder, Tech Holdings</div></div>
+          </div>
+        </div>
+        <div class="testimonial reveal reveal-delay-2">
+          <div class="stars">★★★★★</div>
+          <p>From the first email to the keys, every detail anticipated. They didn't sell us a property — they curated a chapter of our life.</p>
+          <div class="person">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80" alt="Helena R."/>
+            <div><div class="name">Helena R.</div><div class="role">Patron of the Arts, Milan</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA BANNER ============== -->
+  <section class="cta-banner reveal" data-testid="cta-banner">
+    <div class="container">
+      <span class="eyebrow" style="justify-content:center">Begin a Private Conversation</span>
+      <h2>The right residence is rarely advertised.<br/>It is introduced.</h2>
+      <p>Share your brief in confidence. A senior advisor will respond within 24 hours.</p>
+      <a href="contact.html" class="btn btn--solid btn--lg" data-testid="cta-contact-btn">Request Introduction <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <div id="mountFooter"></div>
+
+  <script src="common.js"></script>
+  <script src="card.js"></script>
+  <script>
+    // This inline script runs on the homepage (index.html).
+    // It loads property data, renders featured and opportunity cards,
+    // and updates hero/stats-band values from the JSON Server.
+    (async function () {
+      const data = await window.EH.loadProperties();
+      await window.EH.Wishlist.refresh();
+      const sorted = data.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      const featuredCandidates = data.filter(p => p.featured).slice(0, 6);
+      const featured = featuredCandidates.slice();
+      if (featured.length < 6) {
+        const extra = sorted.filter(p => !featured.includes(p)).slice(0, 6 - featured.length);
+        featured.push(...extra);
+      }
+      const inv = sorted.filter(p => !featured.includes(p)).slice(0, 3);
+      document.getElementById("featuredGrid").innerHTML = featured.map(window.EH.renderCard).join("");
+      document.getElementById("invGrid").innerHTML = inv.map(window.EH.renderCard).join("");
+      try { window.EH.updatePrices(); } catch (e) { /* ignore */ }
+
+      // Reveal newly inserted cards
+      const io = new IntersectionObserver((es) => es.forEach(e => {
+         if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }}), { threshold: .12 });
+      document.querySelectorAll(".cards-grid .reveal").forEach(el => io.observe(el));
+
+      // --- Dynamic stats ---
+      try {
+        const inquiries = await (window.EH.loadInquiries ? window.EH.loadInquiries() : fetch('http://localhost:3000/inquiries').then(r=>r.ok? r.json():[]));
+        let users = [];
+        try {
+          const ures = await fetch('http://localhost:3000/users');
+          users = ures.ok ? await ures.json() : [];
+        } catch (e) { users = []; }
+
+        const totalVolume = data.reduce((s, p) => s + (Number(p.price) || 0), 0);
+        const compactTotal = "$" + new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(totalVolume);
+        const residences = data.length;
+        const countries = new Set(data.map(p => (p.country || p.city || '').toString().trim()).filter(Boolean)).size;
+
+        const userList = users.filter(u => String(u.role || '') === 'user');
+        const countWithInq = userList.filter(u => inquiries.some(i => String(i.customerEmail || '').toLowerCase() === String(u.email || '').toLowerCase() || String(i.customerName || '').toLowerCase() === String(u.name || '').toLowerCase())).length;
+        const retention = userList.length ? Math.round((countWithInq / userList.length) * 100) : 0;
+
+        // Update hero meta (three stats)
+        const heroNums = document.querySelectorAll('.hero__meta .stat .num');
+        if (heroNums[0]) heroNums[0].textContent = compactTotal;
+        if (heroNums[1]) heroNums[1].textContent = `${residences}${residences > 999 ? '+' : ''}`;
+        if (heroNums[2]) heroNums[2].textContent = String(countries);
+
+        // Update stats band (four items)
+        const statNums = document.querySelectorAll('.stats-band .stat-item .num');
+        if (statNums[0]) statNums[0].textContent = compactTotal;
+        if (statNums[1]) statNums[1].textContent = String(residences);
+        if (statNums[2]) statNums[2].textContent = String(countries);
+        if (statNums[3]) statNums[3].textContent = `${retention}%`;
+      } catch (err) {
+        console.warn('Failed to compute dynamic stats', err);
+      }
+
+    })();
+  </script>
+  
+</body>
+</html>
+
+
+

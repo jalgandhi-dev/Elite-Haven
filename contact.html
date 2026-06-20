@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Elite Haven</title>
+  <meta name="description" content="Contact Elite Haven for a private property introduction and senior advisory support." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel='stylesheet' href='style.css' />
+</head>
+<body data-page="contact" data-testid="page-contact">
+  <div id="mountNav"></div>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow" style="justify-content:center">Private Introduction</span>
+      <h1><em>Begin</em> a conversation.</h1>
+      <div class="crumbs"><a href="index.html">Home</a> · Contact</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="detail-grid">
+        <div class="reveal">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Contact</span>
+              <h2>Share your brief.</h2>
+            </div>
+            <p class="subtitle">A senior advisor will respond within 24 hours. All inquiries are held in strict confidence.</p>
+          </div>
+
+          <form class="form-grid" id="contactForm" data-testid="contact-form">
+            <div class="form-row">
+              <div class="field"><label>Full Name</label><input required name="name" type="text" data-testid="contact-name"/></div>
+              <div class="field"><label>Email</label><input required name="email" type="email" data-testid="contact-email"/></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Phone</label><input name="phone" type="tel" data-testid="contact-phone"/></div>
+              <div class="field"><label>Interest</label>
+                <select name="interest" data-testid="contact-interest" required>
+                  <option value="" disabled selected hidden>Select an interest</option>
+                  <option value="Acquisition">Acquisition</option>
+                  <option value="Disposition">Disposition</option>
+                  <option value="Rental">Rental</option>
+                  <option value="Architectural Commission">Architectural Commission</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label>Preferred Location(s)</label><input name="location" type="text" placeholder="e.g. Beverly Hills, Côte d'Azur" data-testid="contact-location"/></div>
+            <div class="field"><label>Brief</label><textarea required name="brief" placeholder="Describe what you are seeking. Style, budget range, timing, family considerations..." data-testid="contact-brief"></textarea></div>
+            <button class="btn btn--solid btn--lg" type="submit" data-testid="contact-submit">Send Brief <span class="arrow">&rarr;</span></button>
+          </form>
+        </div>
+
+        <aside class="reveal reveal-delay-1">
+          <div class="sidebar-card">
+            <h4>Concierge</h4>
+            <p>Monday – Saturday, 9am – 9pm in every timezone we operate.</p>
+            <div style="margin-top:16px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+              <div style="font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">Email</div>
+              <a href="mailto:concierge@elitehaven.lux" style="color:var(--white)">concierge@elitehaven.lux</a>
+            </div>
+            <div style="padding:16px 0;border-bottom:1px solid var(--line)">
+              <div style="font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">Telephone</div>
+              <a href="tel:+13105550100" style="color:var(--white)">+91 31055 50100</a>
+            </div>
+            <div style="padding:16px 0">
+              <div style="font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">WhatsApp</div>
+              <a href="https://wa.me/13105550100" style="color:var(--white)">+91 31055 50100</a>
+            </div>
+            <h4 style="margin-top:28px">Our Offices</h4>
+            <div style="font-size:13px;color:var(--muted);line-height:2">
+              <div><span style="color:var(--gold)">Beverly Hills</span> · 9430 Wilshire Blvd</div>
+              <div><span style="color:var(--gold)">Manhattan</span> · 530 Park Ave</div>
+              <div><span style="color:var(--gold)">London</span> · 7 Mount Street, Mayfair</div>
+              <div><span style="color:var(--gold)">Paris</span> · 27 Avenue Montaigne</div>
+              <div><span style="color:var(--gold)">Dubai</span> · DIFC, Gate Building</div>
+              <div><span style="color:var(--gold)">Tokyo</span> · Aoyama, Minato</div>
+              <div><span style="color:var(--gold)">Hong Kong</span> · IFC Two, Central</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div id="mountFooter"></div>
+  <script src="common.js"></script>
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const fd = new FormData(e.target);
+      const contactPayload = {
+        type: "contact",
+        name: fd.get("name"),
+        email: fd.get("email"),
+        phone: fd.get("phone"),
+        interest: fd.get("interest"),
+        location: fd.get("location"),
+        brief: fd.get("brief"),
+        status: "New",
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        const response = await fetch("http://localhost:3000/contacts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(contactPayload)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to submit contact brief: ${response.status}`);
+        }
+
+        e.target.reset();
+        window.EH.toast("Brief received. An advisor will respond within 24 hours.");
+      } catch (err) {
+        console.error(err);
+        window.EH.toast("Unable to submit brief. Please try again later.");
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+

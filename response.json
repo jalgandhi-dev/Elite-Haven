@@ -1,0 +1,115 @@
+[
+  {
+    "id": "2",
+    "name": "Jal",
+    "email": "jal@elitehaven.lux",
+    "password": "agentpass",
+    "role": "agent"
+  },
+  {
+    "id": "3",
+    "name": "Admin",
+    "email": "admin@elitehaven.lux",
+    "password": "adminpass",
+    "role": "admin"
+  },
+  {
+    "id": "t5Ffeyrmb8U",
+    "name": "Abhi Gandhi",
+    "email": "abhi@gmail.com",
+    "password": "123456",
+    "role": "user",
+    "createdAt": "2026-06-06T06:58:50.809Z"
+  },
+  {
+    "id": "NM8i0Xxvznw",
+    "name": "Ved Bhojani",
+    "email": "ved@gmail.com",
+    "password": "123456",
+    "role": "user",
+    "createdAt": "2026-06-06T07:13:04.981Z",
+    "active": false
+  },
+  {
+    "id": "I9yCjsDd8Q0",
+    "name": "Het Patel",
+    "email": "het@gmail.com",
+    "password": "123456",
+    "role": "user",
+    "createdAt": "2026-06-08T08:25:45.070Z"
+  },
+  {
+    "id": "9q8JsMsNx-U",
+    "name": "Jay Patel",
+    "email": "jay@elitehaven.lux",
+    "password": "agentpass",
+    "role": "agent",
+    "createdAt": "2026-06-06T12:35:33.193Z"
+  },
+  {
+    "id": "5oEVOTS8jZ0",
+    "name": "krisha Gandhi",
+    "email": "krisha@elitehaven.lux",
+    "password": "123456",
+    "role": "agent",
+    "createdAt": "2026-06-06T13:01:51.400Z"
+  },
+  {
+    "id": "wkqS7Nd6ZPs",
+    "name": "Nek Patel",
+    "email": "nek@elitehaven.lux",
+    "password": "123456",
+    "role": "agent",
+    "createdAt": "2026-06-06T13:25:59.191Z"
+  },
+  {
+    "id": "9rZcoYgylZI",
+    "name": "Nikita Gandhi",
+    "email": "niki@gmail.com",
+    "password": "123456",
+    "role": "agent",
+    "createdAt": "2026-06-06T16:19:16.493Z"
+  },
+  {
+    "id": "4AEZTPZ80vM",
+    "name": "Hitesh Gandhi",
+    "email": "hit@elitehaven.lux",
+    "password": "123456",
+    "role": "agent",
+    "createdAt": "2026-06-08T01:45:59.601Z"
+  },
+  {
+    "id": "hUscHqJdO80",
+    "name": "hitesh patel",
+    "email": "hit@gmail.com",
+    "password": "123456",
+    "role": "user",
+    "createdAt": "2026-06-08T03:41:42.520Z"
+  },
+  {
+    "id": "6H1b5X3GlRI",
+    "name": "Shrey Patel",
+    "email": "shrey@gmail.com",
+    "password": "123456",
+    "role": "user",
+    "createdAt": "2026-06-11T12:05:45.891Z"
+  },
+  {
+    "name": "xyz",
+    "email": "xyz@elitehaven.lux",
+    "password": "agentpass",
+    "role": "agent",
+    "createdAt": "2026-06-11T12:07:58.960Z",
+    "id": "1QQVBGBCIyU",
+    "active": true
+  },
+  {
+    "name": "Darsh Gandhi",
+    "email": "darsh@elitehaven.lux",
+    "password": "agentpass",
+    "role": "agent",
+    "active": true,
+    "createdAt": "2026-06-18T09:19:17.729Z",
+    "id": "piDpJgwvO5E"
+  }
+]

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Dashboard — Elite Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="" data-testid="page-dashboard-user">
+  <div id="mountNav"></div>
+
+  <div class="dash-shell">
+    <aside class="dash-side" data-testid="dash-sidebar">
+      <div class="userblock">
+        <img src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?q=80&w=1085&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar"/>
+        <div class="name" id="userName">Welcome</div>
+        <div class="role">Client</div>
+      </div>
+      <nav>
+        <a href="#overview" class="active" data-tab="overview" data-testid="dash-tab-overview">Overview</a>
+        <a href="#saved" data-tab="saved" data-testid="dash-tab-saved">Saved</a>
+        <a href="#inquiries" data-tab="inquiries" data-testid="dash-tab-inquiries">Inquiries</a>
+        <a href="#bookings" data-tab="bookings" data-testid="dash-tab-bookings">Site Visits</a>
+        <a href="#profile" data-tab="profile" data-testid="dash-tab-profile">Profile</a>
+        <a href="login.html" data-testid="dash-tab-logout">Sign Out</a>
+      </nav>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-head">
+        <div>
+          <span class="eyebrow">Your Portfolio</span>
+          <h2 id="welcome">Good evening.</h2>
+        </div>
+        <a href="listings.html" class="btn btn--solid" data-testid="dash-explore-btn">Explore Properties <span class="arrow">→</span></a>
+      </div>
+
+      <section data-tab-panel="overview">
+        <div class="kpi-grid" data-testid="kpi-grid">
+          <div class="kpi"><div class="label">Saved Residences</div><div class="value" id="kSaved">0</div><div class="delta">curated by you</div></div>
+          <div class="kpi"><div class="label">Active Inquiries</div><div class="value" id="kInq">0</div><div class="delta">advisor responding</div></div>
+          <div class="kpi"><div class="label">Booked Visits</div><div class="value" id="kVisits">0</div><div class="delta">upcoming</div></div>
+          <div class="kpi"><div class="label">Watchlist Value</div><div class="value" id="kValue">$0</div><div class="delta">aggregate</div></div>
+        </div>
+      </section>
+
+      <section data-tab-panel="saved">
+        <h3 style="font-family:var(--ff-display);margin-bottom:24px">Your Saved Residences</h3>
+        <div class="cards-grid" id="savedDash" data-testid="dash-saved-grid"></div>
+        <div id="dashSavedEmpty" style="display:none;color:var(--muted);padding:40px 0;text-align:center">
+          You haven't saved any residences yet. <a href="listings.html" style="color:var(--gold)">Browse the collection &rarr;</a>
+        </div>
+      </section>
+
+      <section data-tab-panel="inquiries" style="margin-top:56px">
+        <h3 style="font-family:var(--ff-display);margin-bottom:24px">Recent Inquiries</h3>
+        <div class="table-wrap">
+          <table class="dt" data-testid="inquiries-table">
+            <thead><tr><th>Property</th><th>Submitted</th><th>Status</th><th>Advisor</th></tr></thead>
+            <tbody id="inqBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section data-tab-panel="bookings" style="margin-top:56px">
+        <h3 style="font-family:var(--ff-display);margin-bottom:24px">Scheduled Site Visits</h3>
+        <div class="table-wrap">
+          <table class="dt" data-testid="bookings-table">
+            <thead><tr><th>Property</th><th>Date</th><th>Time</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="bookingsBody">
+              <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px">No site visits scheduled yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section data-tab-panel="profile" style="margin-top:56px">
+        <h3 style="font-family:var(--ff-display);margin-bottom:24px">Profile Settings</h3>
+        <form class="form-grid" id="profileForm" style="max-width:640px" data-testid="profile-form">
+          <div class="form-row">
+            <div class="field"><label>Full Name</label><input name="name" id="pfName" type="text"/></div>
+            <div class="field"><label>Email</label><input name="email" id="pfEmail" type="email"/></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Phone</label><input name="phone" type="tel"/></div>
+            <div class="field"><label>Preferred Region</label>
+              <select name="region">
+                <option>Global</option><option>North America</option><option>Europe</option><option>Asia</option><option>Middle East</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn--solid" type="submit" data-testid="profile-save-btn">Save Changes</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div id="mountFooter"></div>
+  <script src="common.js"></script>
+  <script src="card.js"></script>
+  <script src="dashboard.js"></script>
+  <script>
+    (async function () {
+      await window.EH.Wishlist.refresh();
+      const data = await window.EH.loadAllProperties();
+      const user = window.EH.getSession() || { name: "Guest", email: "guest@elitehaven.lux" };
+      document.getElementById("userName").textContent = user.name || "Client";
+      document.getElementById("welcome").innerHTML = `Good evening, <em>${(user.name || 'Guest').split(' ')[0]}</em>.`;
+      document.getElementById("pfName").value = user.name || "";
+      document.getElementById("pfEmail").value = user.email || "";
+
+      const savedIds = new Set(window.EH.Wishlist.all().map(String));
+      const saved = data.filter(p => Array.from(savedIds).some(id => window.EH.matchesPropertyId(p, id)));
+
+      // Load inquiries from JSON Server and filter by logged-in user
+      const allInquiries = await window.EH.loadInquiries();
+      const userId = String(user.id || "");
+      const userEmail = String(user.email || "").toLowerCase();
+      const inquiries = allInquiries.filter(i => {
+        const inquiryUserId = String(i.userId || i.customerId || "");
+        const inquiryEmail = String(i.customerEmail || "").toLowerCase();
+        return (userId && inquiryUserId === userId) || (userEmail && inquiryEmail === userEmail);
+      });
+
+      const totalValue = saved.reduce((s, p) => s + (p.status === "For Sale" ? p.price : 0), 0);
+      document.getElementById("kSaved").textContent = saved.length;
+      document.getElementById("kInq").textContent = inquiries.length;
+      document.getElementById("kVisits").textContent = inquiries.filter(i => i.date || String(i.status || '').toLowerCase() === 'scheduled').length;
+      document.getElementById("kValue").textContent = "$" + new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(totalValue);
+
+      const savedDash = document.getElementById("savedDash");
+      if (saved.length === 0) {
+        savedDash.style.display = "none";
+        document.getElementById("dashSavedEmpty").style.display = "block";
+      } else {
+        savedDash.style.display = "";
+        document.getElementById("dashSavedEmpty").style.display = "none";
+        savedDash.innerHTML = saved.slice(0, 6).map(window.EH.renderCard).join("");
+        try { window.EH.updatePrices(); } catch (e) { /* ignore */ }
+        savedDash.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+      }
+
+      const inqBody = document.getElementById("inqBody");
+      const bookingsBody = document.getElementById("bookingsBody");
+      function statusClass(s) {
+        const n = String(s || '').toLowerCase();
+        if (n === 'new') return 'pill gold';
+        if (n === 'contacted') return 'pill blue';
+        if (n === 'scheduled') return 'pill green';
+        if (n === 'negotiation') return 'pill purple';
+        if (n === 'closed') return 'pill gray';
+        if (n === 'rejected') return 'pill red';
+        return 'pill';
+      }
+
+      async function renderUserInquiries() {
+        const allInquiriesNow = await window.EH.loadInquiries();
+        const userId = String(user.id || "");
+        const userEmail = String(user.email || "").toLowerCase();
+        const userInquiries = allInquiriesNow.filter(i => {
+          const inquiryUserId = String(i.userId || i.customerId || "");
+          const inquiryEmail = String(i.customerEmail || "").toLowerCase();
+          return (userId && inquiryUserId === userId) || (userEmail && inquiryEmail === userEmail);
+        });
+
+        if (userInquiries.length === 0) {
+          inqBody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:32px">No inquiries yet. Begin a conversation from any property page.</td></tr>`;
+        } else {
+          inqBody.innerHTML = userInquiries.slice().reverse().map(i => {
+            const p = data.find(x => String(x.id) === String(i.propertyId) || String(x.propertyId) === String(i.propertyId));
+            const cls = statusClass(i.status);
+            return `<tr>
+              <td>${i.propertyTitle || i.location || (p ? p.title : 'General Inquiry')}</td>
+              <td>${new Date(i.createdAt || i.submitted || Date.now()).toLocaleDateString()}</td>
+              <td><span class="${cls}">${i.status || 'New'}</span></td>
+              <td>${i.agentName || (p ? p.agent?.name : 'Concierge')}</td>
+            </tr>`;
+          }).join("");
+        }
+
+        const scheduledVisits = userInquiries.filter(i => i.date || String(i.status || '').toLowerCase() === 'scheduled');
+        if (scheduledVisits.length === 0) {
+          bookingsBody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px">No site visits scheduled yet.</td></tr>`;
+        } else {
+          bookingsBody.innerHTML = scheduledVisits.slice().reverse().map(i => {
+            const p = data.find(x => String(x.id) === String(i.propertyId) || String(x.propertyId) === String(i.propertyId));
+            const cls = statusClass(i.status);
+            const eventDate = i.date ? new Date(i.date).toLocaleDateString() : 'TBD';
+            const eventTime = i.time || 'TBD';
+            const actionEmail = encodeURIComponent(i.agentEmail || 'concierge@elitehaven.lux');
+            return `<tr>
+              <td>${i.propertyTitle || i.location || (p ? p.title : 'General Inquiry')}</td>
+              <td>${eventDate}</td>
+              <td>${eventTime}</td>
+              <td><span class="${cls}">${i.status || 'Scheduled'}</span></td>
+              <td><a class="btn btn--small btn--ghost" href="mailto:${actionEmail}?subject=${encodeURIComponent('Inquiry Follow-up')}">Contact</a></td>
+            </tr>`;
+          }).join("");
+        }
+      }
+
+      // initial render and live refresh
+      await renderUserInquiries();
+      window.addEventListener('inquiries:updated', () => { renderUserInquiries().catch(e => console.warn(e)); });
+
+      document.getElementById("profileForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const u = window.EH.getSession() || {};
+        u.name = fd.get("name"); u.email = fd.get("email");
+        window.EH.setSession(u);
+        window.EH.toast("Profile updated.");
+      });
+    })();
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"7f7b0fd8732c4326aae4b9d58d5c514a","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

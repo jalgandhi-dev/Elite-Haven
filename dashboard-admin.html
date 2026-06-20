@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — Elite Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel='stylesheet' href='style.css' />
+</head>
+
+<body data-page="" data-testid="page-dashboard-admin">
+  <div id="mountNav"></div>
+
+  <div class="dash-shell">
+    <aside class="dash-side">
+      <div class="userblock">
+        <img
+          src="https://media.istockphoto.com/id/1226018209/photo/young-indian-businessman-stock-images.webp?a=1&b=1&s=612x612&w=0&k=20&c=HfDGm2SIFBRBXYbpZsVkMMp8CaidkRmnkxJtVg_IPCE="
+          alt="Avatar" />
+        <div class="name">Admin Console</div>
+        <div class="role">Operations</div>
+      </div>
+      <nav>
+        <a href="#overview" data-tab="overview" data-testid="admin-tab-overview">Overview</a>
+        <a href="#properties" class="active" data-tab="properties" data-testid="admin-tab-properties">Properties</a>
+        <a href="#users" data-tab="users" data-testid="admin-tab-users">Users</a>
+        <a href="#agents" data-tab="agents" data-testid="admin-tab-agents">Agents</a>
+        <a href="#settings" data-tab="settings" data-testid="admin-tab-settings">Settings</a>
+        <a href="login.html" data-testid="admin-tab-logout">Sign Out</a>
+      </nav>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-head">
+        <div>
+          <span class="eyebrow">Admin Console</span>
+          <h2>Operations <em>overview</em>.</h2>
+        </div>
+        <a href="listings.html" class="btn">Public Site <span class="arrow">&rarr;</span></a>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+            <div class="label">Properties Added</div>
+            <div class="value" id="aPropsAdded">0</div>
+            <div class="delta" id="dPropsAdded">last 30 days</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Properties Sold</div>
+            <div class="value" id="aPropsSold">0</div>
+            <div class="delta" id="dPropsSold">total sold</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Inquiries Handled</div>
+            <div class="value" id="aInquiriesHandled">0</div>
+            <div class="delta" id="dInquiriesHandled">all time</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Conversion Rate</div>
+            <div class="value" id="aConversionRate">0%</div>
+            <div class="delta" id="dConversionRate">sold / total</div>
+          </div>
+      </div>
+
+      <section data-tab-panel="overview">
+        <!-- Overview content shown above (KPIs) -->
+      </section>
+
+      <section data-tab-panel="properties" style="margin-top:40px">
+        <h3 style="font-family:var(--ff-display);margin-bottom:20px">All Properties</h3>
+        <div class="table-wrap">
+          <table class="dt" data-testid="admin-properties-table">
+            <thead>
+              <tr>
+                <th style="width:18%">Property</th>
+                <th style="width:11%">Agent</th>
+                <th style="width:11%">Region</th>
+                <th style="width:10%">Price</th>
+                <th style="width:11%">Status</th>
+                <th style="width:39%;text-align:center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="propertiesBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section data-tab-panel="users" style="margin-top:40px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+          <h3 style="font-family:var(--ff-display);margin: 0">User Management</h3>
+        </div>
+        <div class="table-wrap">
+          <table class="dt" data-testid="admin-users-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Joined</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="usersBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section data-tab-panel="agents" style="margin-top:40px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+          <h3 style="font-family:var(--ff-display);margin: 0">Agent Management</h3>
+          <button class="btn btn--solid" id="openAdvisorModal">+ Add Agent</button>
+        </div>
+        <div class="table-wrap">
+          <table class="dt" data-testid="admin-agents-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Active Listings</th>
+                <th>Status</th>
+                <th>Joined</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="agentsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section data-tab-panel="settings" style="margin-top:40px">
+        <h3 style="font-family:var(--ff-display);margin-bottom:20px">System Settings</h3>
+        
+        <div style="margin-bottom:60px">
+          <h4 style="margin-bottom:20px">Platform Analytics</h4>
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="label">Site Sessions (30d)</div>
+              <div class="value" id="pSessions">128K</div>
+              <div class="delta" id="dSessions">+12%</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Lead Conversion</div>
+              <div class="value" id="pLeadConv">0%</div>
+              <div class="delta" id="dLeadConv">+0.0%</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Avg. Session</div>
+              <div class="value" id="pAvgSession">4m 28s</div>
+              <div class="delta" id="dAvgSession">+8%</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Bounce Rate</div>
+              <div class="value" id="pBounce">32%</div>
+              <div class="delta down" id="dBounce">+2%</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+          <div id="advisorModal" class="modal-overlay">
+  <div class="modal-box">
+
+    <h3 style="margin-bottom:20px">
+      Add New Advisor
+    </h3>
+
+    <form id="advisorForm" autocomplete="off" novalidate>
+      <input type="text" name="fakeUsername" autocomplete="username" style="display:none;" />
+      <input type="password" name="fakePassword" autocomplete="current-password" style="display:none;" />
+
+      <div class="field">
+        <label>Name</label>
+        <input
+          type="text"
+          id="advisorName"
+          autocomplete="name"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input
+          type="email"
+          id="advisorEmail"
+          autocomplete="off"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input
+          type="password"
+          id="advisorPassword"
+          autocomplete="new-password"
+          required
+        >
+      </div>
+
+      <div
+        style="
+          display:flex;
+          gap:10px;
+          margin-top:20px;
+        "
+      >
+        <button
+          type="submit"
+          class="btn btn--solid"
+        >
+          Create Advisor
+        </button>
+
+        <button
+          type="button"
+          class="btn"
+          id="closeAdvisorModal"
+        >
+          Cancel
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+  <div id="mountFooter"></div>
+  <script src="common.js"></script>
+  <script src="dashboard.js"></script>
+ <script>
+(async function () {
+
+  // Modal
+  const modal = document.getElementById("advisorModal");
+
+  document
+    .getElementById("openAdvisorModal")
+    .addEventListener("click", () => {
+      document.getElementById("advisorForm").reset();
+      document.getElementById("advisorName").value = "";
+      document.getElementById("advisorEmail").value = "";
+      document.getElementById("advisorPassword").value = "";
+      modal.classList.add("show");
+    });
+
+  document
+    .getElementById("closeAdvisorModal")
+    .addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
+
+  let properties = [];
+
+  // Create Advisor
+  document
+    .getElementById("advisorForm")
+    .addEventListener("submit", async (e) => {
+
+      e.preventDefault();
+
+      const name =
+        document.getElementById("advisorName").value.trim();
+
+      const email =
+        document.getElementById("advisorEmail").value.trim();
+
+      const password =
+        document.getElementById("advisorPassword").value.trim();
+
+      const usersResponse =
+        await fetch("http://localhost:3000/users");
+
+      const users =
+        await usersResponse.json();
+
+      const exists = users.find(
+        user =>
+          user.email.toLowerCase() ===
+          email.toLowerCase()
+      );
+
+      if (exists) {
+        window.EH.toast("Email already exists");
+        return;
+      }
+
+      await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          role: "agent",
+          active: true,
+          createdAt: new Date().toISOString()
+        })
+      });
+
+      window.EH.toast("Advisor created successfully");
+
+      modal.classList.remove("show");
+
+      location.reload();
+    });
+
+  // Load Properties
+  if (window.EH?.loadAllProperties) {
+    properties = await window.EH.loadAllProperties();
+
+    // Populate all properties table
+    const propertiesBody = document.getElementById('propertiesBody');
+    if (propertiesBody) {
+      propertiesBody.innerHTML = properties.map(p => `
+        <tr data-id="${p.id}">
+          <td><strong>${p.title}</strong></td>
+          <td>${(p.agent && p.agent.name) || p.agentName || 'Unknown'}</td>
+          <td>${p.city || p.country || '—'}</td>
+          <td>$${new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(p.price || 0)}</td>
+          <td><span class="pill ${p.verified ? 'green' : ''}">${p.verified ? 'Verified' : 'Pending'}</span></td>
+          <td>
+            <div style="display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap">
+              ${!p.verified ? `
+                <button class="btn btn--small verify-approve" data-id="${p.id}" style="padding:6px 12px;font-size:10px;white-space:nowrap">Approve</button>
+                <button class="btn btn--small verify-reject" data-id="${p.id}" style="padding:6px 12px;font-size:10px;white-space:nowrap">Reject</button>
+                <button class="btn btn--small verify-request" data-id="${p.id}" style="padding:6px 12px;font-size:10px;white-space:nowrap">Request</button>
+                <a href="property.html?id=${p.id}" style="color:var(--gold);font-size:12px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:4px;background:rgba(200,168,106,0.15);transition:0.2s;border:1px solid rgba(200,168,106,0.3);white-space:nowrap" onmouseover="this.style.background='rgba(200,168,106,0.25)';this.style.borderColor='rgba(200,168,106,0.5)'" onmouseout="this.style.background='rgba(200,168,106,0.15)';this.style.borderColor='rgba(200,168,106,0.3)'">View</a>
+              ` : `
+                <span style="color:var(--gold);font-weight:bold;font-size:14px">✓ Verified</span>
+                <a href="property.html?id=${p.id}" style="color:var(--gold);font-size:12px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:4px;background:rgba(200,168,106,0.15);transition:0.2s;border:1px solid rgba(200,168,106,0.3);white-space:nowrap" onmouseover="this.style.background='rgba(200,168,106,0.25)';this.style.borderColor='rgba(200,168,106,0.5)'" onmouseout="this.style.background='rgba(200,168,106,0.15)';this.style.borderColor='rgba(200,168,106,0.3)'">View</a>
+              `}
+            </div>
+          </td>
+        </tr>
+      `).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px">No properties found.</td></tr>';
+    }
+
+    // Monthly volume: sum of properties created this month
+    const now = new Date();
+    const monthProps = properties.filter(p => {
+      const d = new Date(p.createdAt || p.created || Date.now());
+      return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
+    });
+    const monthVol = monthProps.reduce((s, p) => s + (Number(p.price) || 0), 0);
+    const compactMonth = "$" + new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(monthVol);
+    const aMonthVol = document.getElementById('aMonthVol');
+    if (aMonthVol) aMonthVol.textContent = compactMonth;
+  }
+
+  // Admin actions for verification (Approve / Reject / Request Changes)
+  try {
+    const propsTable = document.getElementById('propertiesBody');
+    propsTable?.addEventListener('click', async (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      const id = btn.getAttribute('data-id');
+      if (!id) return;
+      
+      if (btn.classList.contains('verify-approve')) {
+        await fetch(`http://localhost:3000/properties/${encodeURIComponent(id)}`, {
+          method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ verified: true, reviewStatus: 'approved', reviewedAt: new Date().toISOString() })
+        });
+        window.EH.invalidateProperties();
+        window.EH.toast('Property approved');
+        location.reload();
+      } else if (btn.classList.contains('verify-reject')) {
+        const ok = confirm('Reject and DELETE this property? This action is permanent.');
+        if (!ok) return;
+        try {
+          const res = await fetch(`http://localhost:3000/properties/${encodeURIComponent(id)}`, { method: 'DELETE' });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          window.EH.invalidateProperties();
+          window.EH.toast('Property deleted');
+          const row = document.querySelector(`tr[data-id="${id}"]`);
+          if (row && row.parentNode) row.parentNode.removeChild(row);
+        } catch (err) {
+          console.error('Failed to delete property', err);
+          window.EH.toast('Failed to delete property');
+        }
+      } else if (btn.classList.contains('verify-request')) {
+        const msg = prompt('Enter change request for the agent:');
+        if (msg === null) return;
+        try {
+          const res = await fetch(`http://localhost:3000/properties/${encodeURIComponent(id)}`);
+          const prop = res.ok ? await res.json() : null;
+          const notes = Array.isArray(prop?.reviewNotes) ? prop.reviewNotes.concat([{ message: msg, date: new Date().toISOString() }]) : [{ message: msg, date: new Date().toISOString() }];
+          await fetch(`http://localhost:3000/properties/${encodeURIComponent(id)}`, {
+            method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ verified: false, reviewStatus: 'changes_requested', reviewNotes: notes, reviewedAt: new Date().toISOString() })
+          });
+          window.EH.invalidateProperties();
+          window.EH.toast('Change request sent to advisor');
+          location.reload();
+        } catch (err) { console.warn(err); }
+      }
+    });
+  } catch (err) { console.warn('verify actions init failed', err); }
+
+  // Load Users
+  const usersResponse =
+    await fetch("http://localhost:3000/users");
+
+  const users =
+    await usersResponse.json();
+
+  const usersBody =
+    document.getElementById("usersBody");
+
+  if (usersBody) {
+    const clients = users.filter(user => String(user.role) === 'user');
+
+    usersBody.innerHTML = clients.map(user => {
+      const active = user.active !== false;
+      const actionButton = `<button class="btn btn--small user-toggle" data-id="${user.id}" style="padding:6px 12px;font-size:10px;white-space:nowrap">${active ? 'Disable' : 'Enable'}</button>`;
+      return `
+      <tr data-id="${user.id}">
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td><span class="pill gold">Client</span></td>
+        <td><span class="pill ${active ? 'green' : 'gray'}">${active ? 'Active' : 'Disabled'}</span></td>
+        <td>${
+            user.createdAt
+              ? new Date(
+                  user.createdAt
+                ).toLocaleDateString()
+              : "-"
+          }</td>
+        <td>${actionButton}</td>
+      </tr>
+    `;
+    }).join("");
+  }
+
+  // Populate agents table
+  try {
+    const agents = (users || []).filter(u => {
+      const role = String(u.role || '').toLowerCase().trim();
+      return role !== 'admin' && role !== 'user';
+    });
+
+    const agentsBody = document.getElementById('agentsBody');
+    if (agentsBody) {
+      agentsBody.innerHTML = agents.map(agent => {
+        const active = agent.active !== false;
+        const agentProps = (window.EH?.cachedProperties || properties || []).filter(p => String(p.agentId || p.agent?.id) === String(agent.id)).length;
+        return `
+          <tr data-id="${agent.id}">
+            <td>${agent.name}</td>
+            <td>${agent.email}</td>
+            <td>${agentProps}</td>
+            <td><span class="pill ${active ? 'green' : 'gray'}">${active ? 'Active' : 'Inactive'}</span></td>
+            <td>${agent.createdAt ? new Date(agent.createdAt).toLocaleDateString() : '—'}</td>
+            <td>
+              <button class="btn btn--small agent-toggle" data-id="${agent.id}" style="padding:6px 12px;font-size:10px;white-space:nowrap">${active ? 'Deactivate' : 'Activate'}</button>
+              <button class="btn btn--small btn--ghost agent-remove" data-id="${agent.id}" style="padding:6px 12px;font-size:10px;white-space:nowrap">Remove</button>
+            </td>
+          </tr>
+        `;
+      }).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px">No agents found.</td></tr>';
+    }
+  } catch (e) { console.warn(e); }
+
+  // User / agent management actions
+  try {
+    const userTable = document.getElementById('usersBody');
+    userTable?.addEventListener('click', async (event) => {
+      const button = event.target.closest('.user-toggle');
+      if (!button) return;
+      const id = button.getAttribute('data-id');
+      if (!id) return;
+      const user = users.find(u => String(u.id) === String(id));
+      if (!user) return;
+      const active = user.active !== false;
+      try {
+        await fetch(`http://localhost:3000/users/${encodeURIComponent(id)}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ active: !active })
+        });
+        window.EH.toast(`User ${active ? 'disabled' : 'enabled'} successfully`);
+        location.reload();
+      } catch (err) {
+        console.error('Failed to update user', err);
+        window.EH.toast('Unable to update user status');
+      }
+    });
+
+    const agentTable = document.getElementById('agentsBody');
+    agentTable?.addEventListener('click', async (event) => {
+      const toggle = event.target.closest('.agent-toggle');
+      const remove = event.target.closest('.agent-remove');
+      if (!toggle && !remove) return;
+      const id = (toggle || remove).getAttribute('data-id');
+      if (!id) return;
+      if (toggle) {
+        const agent = users.find(u => String(u.id) === String(id));
+        if (!agent) return;
+        const active = agent.active !== false;
+        try {
+          await fetch(`http://localhost:3000/users/${encodeURIComponent(id)}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ active: !active })
+          });
+          window.EH.toast(`Agent ${active ? 'deactivated' : 'activated'} successfully`);
+          location.reload();
+        } catch (err) {
+          console.error('Failed to update agent', err);
+          window.EH.toast('Unable to update agent status');
+        }
+      }
+      if (remove) {
+        const confirmed = confirm('Delete this agent account? This cannot be undone.');
+        if (!confirmed) return;
+        try {
+          await fetch(`http://localhost:3000/users/${encodeURIComponent(id)}`, { method: 'DELETE' });
+          window.EH.toast('Agent removed successfully');
+          location.reload();
+        } catch (err) {
+          console.error('Failed to remove agent', err);
+          window.EH.toast('Unable to remove agent');
+        }
+      }
+    });
+  } catch (err) {
+    console.warn('Failed to initialize user/agent actions', err);
+  }
+
+  // Load inquiries and compute lead conversion
+  try {
+    const inquiries = await (window.EH.loadInquiries ? window.EH.loadInquiries() : fetch('http://localhost:3000/inquiries').then(r=>r.ok? r.json():[]));
+    const wishRes = await fetch('http://localhost:3000/wishlist');
+    const wishlist = wishRes.ok ? await wishRes.json() : [];
+
+    // Use last-30-days window for performance metrics
+    const now = Date.now();
+    const days30 = 1000 * 60 * 60 * 24 * 30;
+    const recentInquiries = inquiries.filter(i => {
+      const t = new Date(i.createdAt || i.created || i.submitted || Date.now()).getTime();
+      return (now - t) <= days30;
+    });
+
+    const totalUsers = (users || []).length || 0;
+
+    // Avg inquiries per user (30d)
+    const uniqueInquirers = new Set(recentInquiries.map(i => (i.customerEmail || i.customerName || i.customerId || '').toString().toLowerCase()));
+    const avgInquiriesPerUser = totalUsers ? (recentInquiries.length / totalUsers) : 0;
+
+    // Lead conversion = unique inquirers (30d) / total users
+    const leadConv = totalUsers ? (Array.from(uniqueInquirers).filter(x => x).length / totalUsers) * 100 : 0;
+
+    // Wishlist rate = users with at least one wishlist entry / total users
+    const usersWithWishlist = new Set((wishlist || []).map(w => String(w.userId)));
+    const wishlistRate = totalUsers ? (usersWithWishlist.size / totalUsers) * 100 : 0;
+
+    // Avg saved per user
+    const avgSaved = totalUsers ? ((wishlist || []).length / totalUsers) : 0;
+
+    // Update DOM
+    const pSessions = document.getElementById('pSessions');
+    const pLeadConv = document.getElementById('pLeadConv');
+    const pAvgSession = document.getElementById('pAvgSession');
+    const pBounce = document.getElementById('pBounce');
+    const dSessions = document.getElementById('dSessions');
+    const dLeadConv = document.getElementById('dLeadConv');
+    const dAvgSession = document.getElementById('dAvgSession');
+    const dBounce = document.getElementById('dBounce');
+
+    if (pSessions) pSessions.textContent = avgInquiriesPerUser.toFixed(2);
+    if (dSessions) dSessions.textContent = `${recentInquiries.length} inquiries (30d)`;
+    if (pLeadConv) pLeadConv.textContent = `${leadConv.toFixed(1)}%`;
+    if (dLeadConv) dLeadConv.textContent = `${Array.from(uniqueInquirers).filter(x => x).length} unique (30d)`;
+    if (pAvgSession) pAvgSession.textContent = `${wishlistRate.toFixed(1)}%`;
+    if (dAvgSession) dAvgSession.textContent = `${usersWithWishlist.size} users with saved items`;
+    if (pBounce) pBounce.textContent = avgSaved.toFixed(2);
+    if (dBounce) dBounce.textContent = `${(wishlist || []).length} total saved`
+
+  } catch (e) { console.warn('Failed to derive performance metrics', e); }
+
+  // Logout
+  const logoutLink =
+    document.querySelector(
+      '[data-testid="admin-tab-logout"]'
+    );
+
+  if (logoutLink) {
+
+    logoutLink.addEventListener(
+      "click",
+      (e) => {
+
+        e.preventDefault();
+
+        window.EH.clearSession();
+
+        window.EH.toast(
+          "Logged out successfully."
+        );
+
+        setTimeout(() => {
+          window.location.href =
+            "login.html";
+        }, 500);
+
+      }
+    );
+
+  }
+
+})();
+</script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447"
+    integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
+    data-cf-beacon='{"version":"2024.11.0","token":"7f7b0fd8732c4326aae4b9d58d5c514a","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
