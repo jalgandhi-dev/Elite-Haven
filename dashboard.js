@@ -114,7 +114,7 @@
     statusUpdateInProgress = true;
     try {
       sel.disabled = true;
-      await fetch(`http://localhost:3000/inquiries/${encodeURIComponent(id)}`, {
+      await fetch(`http://elite-haven.onrender.com/inquiries/${encodeURIComponent(id)}`, {
         method: 'PATCH', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
       });
