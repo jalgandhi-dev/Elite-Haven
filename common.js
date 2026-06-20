@@ -360,7 +360,7 @@
       <nav class="nav" id="ehNav" data-testid="main-nav">
         <div class="container nav__inner">
           <a href="index.html" class="brand" data-testid="brand-link">
-            <span class="brand__mark"><img src="Logo1.png" alt="Elite Haven Logo" /></span>
+            <span class="brand__mark"><img src="logo1.png" alt="Elite Haven Logo" /></span>
             <span class="brand__name">Elite Haven</span>
           </a>
           <div class="nav__links" id="navLinks">${linksHtml}</div>
