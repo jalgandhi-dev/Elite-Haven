@@ -87,7 +87,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
   try {
     // Fetch users from JSON Server
-    const response = await fetch("http://elite-haven.onrender.com/users");
+    const response = await fetch("https://elite-haven.onrender.com/users");
 
     if (!response.ok) {
       throw new Error("Failed to fetch users");
